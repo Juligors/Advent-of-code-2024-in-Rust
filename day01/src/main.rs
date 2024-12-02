@@ -40,10 +40,7 @@ fn part_2(left_col: &[i32], right_col: &[i32]) {
 
     let part_2_result: i32 = left_col
         .iter()
-        .map(|num| match value_counts_right.get(num) {
-            Some(value) => num * value,
-            None => 0,
-        })
+        .map(|&num| *value_counts_right.entry(num).or_default() * num)
         .sum();
 
     println!("Part 2 result: {}", part_2_result);
