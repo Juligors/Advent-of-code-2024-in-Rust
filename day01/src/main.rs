@@ -33,14 +33,14 @@ fn part_1(left_col: &[i32], right_col: &[i32]) {
 }
 
 fn part_2(left_col: &[i32], right_col: &[i32]) {
-    let mut nums_from_right: HashMap<i32, i32> = HashMap::new();
+    let mut value_counts_right: HashMap<i32, i32> = HashMap::new();
     for num in right_col.iter() {
-        *nums_from_right.entry(*num).or_default() += 1;
+        *value_counts_right.entry(*num).or_default() += 1;
     }
 
     let part_2_result: i32 = left_col
         .iter()
-        .map(|num| match nums_from_right.get(num) {
+        .map(|num| match value_counts_right.get(num) {
             Some(value) => num * value,
             None => 0,
         })
